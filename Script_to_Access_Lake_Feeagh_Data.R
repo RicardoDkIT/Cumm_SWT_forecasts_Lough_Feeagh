@@ -342,6 +342,8 @@ values_42 <- output_daily[ , "42"]
 observation_values  <- c(values_0.9, values_2, values_4, values_8, values_11, values_14, values_16, values_18,
                          values_20,values_22,values_27, values_32, values_42)
 
+observation_values[is.nan(observation_values)] <- NA
+
 FLARE_dataset$observation <- observation_values 
 
 #Column 5: variable#############################################################

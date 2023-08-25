@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0
       - name: Get Feeagh Observations
         run: | 
-          R -e 'remotes::install_version("rerddap", version = "1.0.3")'
+          R -e 'remotes::install_version("rerddap", version = "1.0.0")'
           Rscript $GITHUB_WORKSPACE/Script_to_Access_Lake_Feeagh_Data.R
       - name: Configure Git
         run: |

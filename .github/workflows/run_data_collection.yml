@@ -20,11 +20,11 @@ jobs:
         run: | 
           R -e 'remotes::install_version("rerddap", version = "1.0.0")'
           Rscript $GITHUB_WORKSPACE/Script_to_Access_Lake_Feeagh_Data.R
-      - name: Configure Git
-        run: |
-            git config --global --add safe.directory "$GITHUB_WORKSPACE"
-            git config --local user.name "$GITHUB_ACTOR"
-            git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      #- name: Configure Git
+      #  run: |
+      #      git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      #      git config --local user.name "$GITHUB_ACTOR"
+      #      git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
       
       - name: Commit and Push
         run: |

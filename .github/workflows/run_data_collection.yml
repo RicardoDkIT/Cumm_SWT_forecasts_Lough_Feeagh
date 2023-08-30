@@ -12,6 +12,8 @@ jobs:
     container:
       image: rocker/geospatial:latest
     steps:
+      - run: git config --system --add safe.directory '*'
+      
       - name: Checkout repo
         uses: actions/checkout@v3
         with:

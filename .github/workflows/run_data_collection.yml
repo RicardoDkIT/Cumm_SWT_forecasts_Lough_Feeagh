@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          set-safe-directory: '*'
       - name: Get Feeagh Observations
         run: | 
           R -e 'remotes::install_version("rerddap", version = "1.0.0")'

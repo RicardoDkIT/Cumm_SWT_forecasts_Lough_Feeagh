@@ -7,24 +7,37 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
+    env: 
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     container:
       image: rocker/geospatial:latest
-    steps:
+    steps:  
+      - run: git config --system --add safe.directory '*'
+      
       - name: Checkout repo
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          set-safe-directory: '*'
       - name: Get Feeagh Observations
         run: | 
           R -e 'remotes::install_version("rerddap", version = "1.0.0")'
           Rscript $GITHUB_WORKSPACE/Script_to_Access_Lake_Feeagh_Data.R
-      - name: Configure Git
+      #- name: Configure Git
+      #  run: |
+      #      git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      #      git config --local user.name "$GITHUB_ACTOR"
+      #      git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+      
+      - name: Commit and Push
         run: |
-            git config --global --add safe.directory "$GITHUB_WORKSPACE"
-            git config --local user.name "$GITHUB_ACTOR"
-            git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-      - name: Commit files
-        run: |
-            git add Observations_feea.csv
-            git commit -m "Updating Feeagh observations" || echo "No changes to commit"
-            git push -f || echo "No changes to commit"
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add Observations_feea.csv
+          git commit -m "Updating Feeagh observations" || echo "No changes to commit"
+          git push https://${GITHUB_PAT}:${GITHUB_PAT}@github.com/${GITHUB_REPOSITORY}      
+      #- name: Commit files
+      #  run: |
+      #      git add Observations_feea.csv
+      #      git commit -m "Updating Feeagh observations" || echo "No changes to commit"
+      #      git push -f || echo "No changes to commit"

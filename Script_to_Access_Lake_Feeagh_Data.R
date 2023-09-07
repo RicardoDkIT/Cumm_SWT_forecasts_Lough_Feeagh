@@ -1,5 +1,5 @@
 # Script to access Lake Feeagh data
-# Modified: 24 August 2023
+# Modified: 07 September 2023
 # Ricardo Paiz
 
 ##Packages######################################################################
@@ -293,6 +293,9 @@ output_daily[,14][output_daily[,14] > output_daily[,13]*1.02] <- NA
 
 output_daily[,14][output_daily[,14] < output_daily[,13]-2.0] <- NA #additional check - temperatures cant vary more than 0.96 percentile of variations 2004-2023. This was 0.9 but 2.2 (previous percetile was greater)
 
+
+
+
 #FLARE target configuration#####################################################
 
 num_rows <- ((ncol(output_daily)-1)*no_days)
@@ -342,7 +345,7 @@ values_42 <- output_daily[ , "42"]
 observation_values  <- c(values_0.9, values_2, values_4, values_8, values_11, values_14, values_16, values_18,
                          values_20,values_22,values_27, values_32, values_42)
 
-observation_values[is.nan(observation_values)] <- NA
+observation_values[is.nan(observation_values)] <-  NA
 
 FLARE_dataset$observation <- observation_values 
 
@@ -366,6 +369,14 @@ updated_observations <- distinct(merged_observations, datetime, depth, .keep_all
 updated_observations <- updated_observations %>% arrange(datetime) %>% arrange(depth)
 
 updated_observations$observation <- round(updated_observations$observation, 2)
+
+##Remove rows that are not in the same timeformat
+
+time_format <- "\\d{4}-\\d{2}-\\d{2}$"
+
+matching_rows <- grep(time_format, updated_observations$datetime)
+
+updated_observations <- updated_observations[-matching_rows, ]
 
 write.csv(updated_observations, "Observations_feea.csv", row.names = FALSE, quote = FALSE)
 

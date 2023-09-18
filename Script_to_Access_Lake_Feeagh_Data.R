@@ -19,7 +19,7 @@ info(buoy)$variables #View variables
 #Set start and stop dates to pull data from##################################### 
 #Default: data is pulled from four weeks from now to today######################
 
-start <- Sys.Date()-28 #number of days from now
+start <- Sys.Date()-14 #number of days from now
 stop <- Sys.Date()
 samp<-tabledap('IMINewportBuoys' , paste0('time>=',start), paste0('time<=',stop))
 

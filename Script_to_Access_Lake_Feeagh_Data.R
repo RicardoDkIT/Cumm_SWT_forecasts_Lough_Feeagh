@@ -372,24 +372,24 @@ updated_observations$observation <- round(updated_observations$observation, 2)
 
 ##Remove rows that are not in the same timeformat
 
-time_format <- "\\d{4}-\\d{2}-\\d{2}$"
+#time_format <- "\\d{4}-\\d{2}-\\d{2}$"
 
-matching_rows <- grep(time_format, updated_observations$datetime)
+#matching_rows <- grep(time_format, updated_observations$datetime)
 
-if (length(matching_rows) == 0) {
+#if (length(matching_rows) == 0) {
   
   
-  cat("time_format correction is not needed")
+#  cat("time_format correction is not needed")
   
   
-} else {
+#} else {
   
-  matching_rows <- grep(time_format, updated_observations$datetime)
+#  matching_rows <- grep(time_format, updated_observations$datetime)
   
-  updated_observations <- updated_observations[-matching_rows, ]
+#  updated_observations <- updated_observations[-matching_rows, ]
   
-  cat("time_format corrected")
-}
+#  cat("time_format corrected")
+#}
 
 write.csv(updated_observations, "Observations_feea.csv", row.names = FALSE, quote = FALSE)
 

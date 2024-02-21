@@ -1,5 +1,5 @@
 # Script to access Lake Feeagh data
-# Modified: 07 September 2023
+# Modified: 21 Feb 2024
 # Ricardo Paiz
 
 ##Packages######################################################################
@@ -19,7 +19,7 @@ info(buoy)$variables #View variables
 #Set start and stop dates to pull data from##################################### 
 #Default: data is pulled from four weeks from now to today######################
 
-start <- Sys.Date()-7 #number of days from now
+start <- Sys.Date()-35 #number of days from now
 stop <- Sys.Date()
 samp<-tabledap('IMINewportBuoys' , paste0('time>=',start), paste0('time<=',stop))
 
@@ -396,3 +396,4 @@ if (length(matching_rows) == 0) {
 write.csv(updated_observations, "Observations_feea.csv", row.names = FALSE, quote = FALSE)
 
 #Last line######################################################################
+

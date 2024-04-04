@@ -19,7 +19,7 @@ info(buoy)$variables #View variables
 #Set start and stop dates to pull data from##################################### 
 #Default: data is pulled from four weeks from now to today######################
 
-start <- Sys.Date()-35 #number of days from now
+start <- Sys.Date()-28 #number of days from now
 stop <- Sys.Date()
 samp<-tabledap('IMINewportBuoys' , paste0('time>=',start), paste0('time<=',stop))
 
@@ -372,24 +372,24 @@ updated_observations$observation <- round(updated_observations$observation, 2)
 
 ##Remove rows that are not in the same timeformat BELOW
 
-time_format <- "\\d{4}-\\d{2}-\\d{2}$"
-
-matching_rows <- grep(time_format, updated_observations$datetime)
-
-if (length(matching_rows) == 0) {
-  
-  
-  cat("time_format correction is not needed")
-  
-  
-} else {
-  
-  matching_rows <- grep(time_format, updated_observations$datetime)
-  
-  updated_observations <- updated_observations[-matching_rows, ]
-  
-  cat("time_format corrected")
-}
+# time_format <- "\\d{4}-\\d{2}-\\d{2}$"
+# 
+# matching_rows <- grep(time_format, updated_observations$datetime)
+# 
+# if (length(matching_rows) == 0) {
+#   
+#   
+#   cat("time_format correction is not needed")
+#   
+#   
+# } else {
+#   
+#   matching_rows <- grep(time_format, updated_observations$datetime)
+#   
+#   updated_observations <- updated_observations[-matching_rows, ]
+#   
+#   cat("time_format corrected")
+# }
 
 ##Remove rows that are not in the same timeformat ABOVE
 

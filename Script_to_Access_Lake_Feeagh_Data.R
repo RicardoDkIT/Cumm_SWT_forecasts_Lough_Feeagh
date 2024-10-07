@@ -1,5 +1,5 @@
 # Script to access Lake Feeagh data
-# Modified: 21 Feb 2024
+# Modified: 07 October 2024
 # Ricardo Paiz
 
 ##Packages######################################################################
@@ -112,7 +112,7 @@ str(fgh)
 print(summary(fgh))
 
 
-#Filling a dataframe with daily averagese#######################################
+#Filling a dataframe with daily averages#######################################
 
 no_days <- as.numeric(stop - start)
 
@@ -370,26 +370,27 @@ updated_observations <- updated_observations %>% arrange(datetime) %>% arrange(d
 
 updated_observations$observation <- round(updated_observations$observation, 2)
 
-##Remove rows that are not in the same timeformat BELOW
+##Remove rows that are not in the same time format. These lines, however, sometimes only work when I access the code on my own and not through
+##a Github action. I believe that is not very important though.
 
-# time_format <- "\\d{4}-\\d{2}-\\d{2}$"
-# 
-# matching_rows <- grep(time_format, updated_observations$datetime)
-# 
-# if (length(matching_rows) == 0) {
-#   
-#   
-#   cat("time_format correction is not needed")
-#   
-#   
-# } else {
-#   
-#   matching_rows <- grep(time_format, updated_observations$datetime)
-#   
-#   updated_observations <- updated_observations[-matching_rows, ]
-#   
-#   cat("time_format corrected")
-# }
+ # time_format <- "\\d{4}-\\d{2}-\\d{2}$"
+ # 
+ # matching_rows <- grep(time_format, updated_observations$datetime)
+ # 
+ # if (length(matching_rows) == 0) {
+ #   
+ #   
+ #   cat("time_format correction is not needed")
+ #   
+ #   
+ # } else {
+ #   
+ #   matching_rows <- grep(time_format, updated_observations$datetime)
+ #   
+ #   updated_observations <- updated_observations[-matching_rows, ]
+ #   
+ #   cat("time_format corrected")
+ # }
 
 ##Remove rows that are not in the same timeformat ABOVE
 

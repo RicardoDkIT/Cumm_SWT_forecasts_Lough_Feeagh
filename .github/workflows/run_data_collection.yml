@@ -1,4 +1,4 @@
-name: Feeagh Observations
+name: Forecasting workflow; Cum. SWT Lough Feeagh
 on:
   workflow_dispatch:
   schedule:

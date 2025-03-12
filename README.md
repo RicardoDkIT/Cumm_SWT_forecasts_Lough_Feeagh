@@ -1,4 +1,4 @@
-## Repository to generate cummulative water temperature forecasts for Lough Feeagh. Units: degree C - days.
+## Repository to generate cumulative water temperature forecasts for Lough Feeagh 21 days in the future. Units: degree C - days.
 
 #### The last forecast generated can be found in Last_forecast_generated_Feeagh_Cummulative_SWT.csv
 

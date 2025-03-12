@@ -33,7 +33,8 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add Observations_feea.csv
+          git add Past_sonde_observations_since_2023.csv
+          git add Last_forecast_generated_Feeagh_Cummulative_SWT.csv
           git commit -m "Updating Feeagh observations" || echo "No changes to commit"
           git push https://${GITHUB_PAT}:${GITHUB_PAT}@github.com/${GITHUB_REPOSITORY}      
       #- name: Commit files

@@ -273,7 +273,7 @@ Base_data$datetime <- format(as.Date(Base_data$datetime), "%m/%d/%Y")
 colnames(Base_data) <- colnames(Past_sonde_observations)
 
 # Add the rows from Base_data to Past_sonde_observations
-merged_data <- rbind(Past_sonde_observations, Base_data)
+merged_data <- rbind(Base_data, Past_sonde_observations)
 
 merged_data <- merged_data[!duplicated(merged_data$datetime), ]
 

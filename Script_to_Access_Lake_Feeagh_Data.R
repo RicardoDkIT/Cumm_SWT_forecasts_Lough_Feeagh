@@ -307,7 +307,9 @@ get_calendar_day <- function(date) {
 
 # Apply the function to the 'datetime' column in merged_data
 merged_data$calendar_day <- sapply(as.Date(merged_data$datetime, format = "%m/%d/%Y"), get_calendar_day)
-
+merged_data <- merged_data %>%
+  mutate(datetime = as.Date(datetime, format = "%m/%d/%Y")) %>%
+  arrange(datetime)
 
 write.csv(merged_data[, 1:2], "Past_sonde_observations_since_2023.csv", row.names = FALSE)
 

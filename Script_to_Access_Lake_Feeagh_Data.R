@@ -262,8 +262,11 @@ output_daily[,14][output_daily[,14] < output_daily[,13]-2.0] <- NA #additional c
 
 Past_sonde_observations <- read.csv("Past_sonde_observations_since_2023.csv", header = TRUE)
 
+Past_sonde_observations$datetime <- as.Date(Past_sonde_observations$datetime, format = "%Y-%m-%d")
+
 # Ensure datetime is in the correct date format first
-Past_sonde_observations$datetime <- as.Date(Past_sonde_observations$datetime, format = "%m/%d/%Y")
+
+#Past_sonde_observations$datetime <- as.Date(Past_sonde_observations$datetime, format = "%m/%d/%Y")
 
 # Now convert to the desired format "%m/%d/%Y" if needed
 Past_sonde_observations$datetime <- format(Past_sonde_observations$datetime, "%m/%d/%Y")
@@ -310,6 +313,16 @@ merged_data$calendar_day <- sapply(as.Date(merged_data$datetime, format = "%m/%d
 merged_data <- merged_data %>%
   mutate(datetime = as.Date(datetime, format = "%m/%d/%Y")) %>%
   arrange(datetime)
+
+
+merged_data$datetime <- as.Date(merged_data$datetime, format = "%Y-%m-%d")
+
+# Ensure datetime is in the correct date format first
+
+#Past_sonde_observations$datetime <- as.Date(Past_sonde_observations$datetime, format = "%m/%d/%Y")
+
+# Now convert to the desired format "%m/%d/%Y" if needed
+merged_data$datetime <- format(merged_data$datetime, "%m/%d/%Y")
 
 write.csv(merged_data[, 1:2], "Past_sonde_observations_since_2023.csv", row.names = FALSE)
 
